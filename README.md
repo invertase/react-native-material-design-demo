@@ -1,8 +1,8 @@
 # React Native Material Design Demo App
 
-This repository contains a React Native project, implementing the `react-native-material-design` package.
+This repository contains a React Native project, implementing the [react-native-material-design](https://github.com/react-native-material-design/react-native-material-design) package.
 
-> Please submit all issues to `react-native-material-design`.
+> Please submit all issues to [react-native-material-design](https://github.com/react-native-material-design/react-native-material-design/issues).
 
 ## Installation
 
