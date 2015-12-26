@@ -103,6 +103,11 @@ export default class Navigation extends Component {
                     onPress={() => this.changeScene('Dividers')}
                 />
                 <Drawer.Item
+                    icon="label"
+                    value="List"
+                    onPress={() => this.changeScene('List')}
+                />
+                <Drawer.Item
                     icon="radio-button-checked"
                     value="RadioButtons"
                     onPress={() => this.changeScene('RadioButtons')}
