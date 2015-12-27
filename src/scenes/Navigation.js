@@ -84,38 +84,39 @@ export default class Navigation extends Component {
                 <Drawer.Item
                     icon="face"
                     value="Avatars"
+                    label="12"
                     onPress={() => this.changeScene('Avatars')}
                 />
                 <Drawer.Item
                     icon="label"
                     value="Buttons"
+                    label="8"
                     onPress={() => this.changeScene('Buttons')}
                 />
                 <Drawer.Item
                     icon="check-box"
                     value="Checkboxes"
+                    label="10"
                     onPress={() => this.changeScene('Checkboxes')}
                 />
 
                 <Drawer.Item
                     icon="label"
                     value="Dividers"
+                    label="New!"
                     onPress={() => this.changeScene('Dividers')}
-                />
-                <Drawer.Item
-                    icon="label"
-                    value="List"
-                    onPress={() => this.changeScene('List')}
                 />
                 <Drawer.Item
                     icon="radio-button-checked"
                     value="RadioButtons"
+                    label="8"
                     onPress={() => this.changeScene('RadioButtons')}
                 />
 
                 <Drawer.Item
                     icon="label"
                     value="Subheaders"
+                    label="4"
                     onPress={() => this.changeScene('Subheaders')}
                 />
                 <Divider />
@@ -123,6 +124,7 @@ export default class Navigation extends Component {
                 <Drawer.Item
                     icon="invert-colors"
                     value="Change Theme"
+                    label="24"
                     onPress={() => this.changeScene('Themes', 'Change Theme')}
                 />
             </Drawer>
