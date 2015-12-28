@@ -1,5 +1,5 @@
-import React, { Component, View, ProgressBarAndroid } from 'react-native';
-import { Subheader, Divider, List, COLOR } from 'react-native-material-design';
+import React, { Component, View, ProgressBarAndroid, Image } from 'react-native';
+import { Subheader, Divider, List, Icon, Avatar, COLOR } from 'react-native-material-design';
 
 import AppStore from '../stores/AppStore';
 
@@ -26,9 +26,44 @@ export default class ListExample extends Component {
 
         return (
             <View>
-                <Subheader text="Text only, single line" color={theme} />
-                {data['text-only-single-line'].map((item) => {
-                    return <List key={item} primaryText={item} />;
+                <Subheader text="Single Line" color={theme} />
+                {data['single-line'].map((item, i) => {
+                    return (
+                        <List
+                            key={i}
+                            primaryText={item}
+                        />
+                    );
+                })}
+
+                <Subheader text="Single Line with Icon" color={theme} />
+                {data['single-line-with-icon'].map((item, i) => {
+                    return (
+                        <List
+                            key={i}
+                            primaryText={item.text}
+                            leftIcon={{
+                                icon: item.icon
+                            }}
+                        />
+                    );
+                })}
+
+                <Subheader text="Single Line with Avatar & Icon" color={theme} />
+                {data['single-line-with-avatar-and-icon'].map((item, i) => {
+                    return (
+                        <List
+                            key={i}
+                            primaryText={item.text}
+                            leftAvatar={
+                                <Avatar image={<Image source={{ uri: 'http://facebook.github.io/react-native/img/opengraph.png?2' }} />} />
+                            }
+                            rightIcon={{
+                                icon: item.icon,
+                                onPress: () => {}
+                            }}
+                        />
+                    );
                 })}
             </View>
         );
@@ -44,5 +79,27 @@ const styles = {
 };
 
 const data = {
-    'text-only-single-line': ['Inbox', 'Starred', 'Sent Mail', 'Drafts']
+    'single-line': ['Inbox', 'Starred', 'Sent Mail', 'Drafts'],
+    'single-line-with-icon': [
+        {
+            text: 'Inbox', icon: 'inbox'
+        }, {
+            text: 'Starred', icon: 'star'
+        }, {
+            text: 'Sent Mail', icon: 'send'
+        }, {
+            text: 'Drafts', icon: 'drafts'
+        }
+    ],
+    'single-line-with-avatar-and-icon': [
+        {
+            text: 'Inbox', icon: 'inbox'
+        }, {
+            text: 'Starred', icon: 'star'
+        }, {
+            text: 'Sent Mail', icon: 'send'
+        }, {
+            text: 'Drafts', icon: 'drafts'
+        }
+    ]
 };

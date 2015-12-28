@@ -7,10 +7,9 @@ const THEME = '@Storage:theme';
 class AppStore {
 
     constructor() {
-        this.routeName = '';
-        this.theme = null;
-
         this._loadTheme();
+
+        this.routeName = '';
 
         this.bindListeners({
             handleUpdateRouteName: AppActions.UPDATE_ROUTE_NAME,
