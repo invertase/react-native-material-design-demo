@@ -37,6 +37,9 @@ export default class Navigation extends Component {
                     case 'List':
                         component = require('./List').default;
                         break;
+                    case 'IconToggles':
+                        component = require('./IconToggles').default;
+                        break;
                     case 'RadioButtons':
                         component = require('./RadioButtons').default;
                         break;
@@ -70,56 +73,67 @@ export default class Navigation extends Component {
             <Drawer theme='light'>
                 <Drawer.Header image={<Image source={require('./../img/nav.jpg')} />}>
                     <View style={styles.header}>
-                        <Avatar size={80} src="http://facebook.github.io/react-native/img/opengraph.png?2"/>
+                        <Avatar size={80} image={<Image source={{ uri: "http://facebook.github.io/react-native/img/opengraph.png?2" }}/>} />
                         <Text style={[styles.text, COLOR.paperGrey50, TYPO.paperFontSubhead]}>React Native Material Design</Text>
                     </View>
                 </Drawer.Header>
 
-                <Drawer.Item
-                    icon="home"
-                    value="Welcome"
-                    onPress={() => this.changeScene('Welcome')}
-                />
-                <Drawer.Subheader value="Components" />
-                <Drawer.Item
-                    icon="face"
-                    value="Avatars"
-                    onPress={() => this.changeScene('Avatars')}
-                />
-                <Drawer.Item
-                    icon="label"
-                    value="Buttons"
-                    onPress={() => this.changeScene('Buttons')}
-                />
-                <Drawer.Item
-                    icon="check-box"
-                    value="Checkboxes"
-                    onPress={() => this.changeScene('Checkboxes')}
+                <Drawer.Section
+                    items={[{
+                        icon: 'home',
+                        value: 'Welcome',
+                        onPress: () => this.changeScene('Welcome')
+                    }]}
                 />
 
-                <Drawer.Item
-                    icon="label"
-                    value="Dividers"
-                    onPress={() => this.changeScene('Dividers')}
-                />
-                <Drawer.Item
-                    icon="radio-button-checked"
-                    value="RadioButtons"
-                    onPress={() => this.changeScene('RadioButtons')}
-                />
-
-                <Drawer.Item
-                    icon="label"
-                    value="Subheaders"
-                    onPress={() => this.changeScene('Subheaders')}
+                <Drawer.Section
+                    title="Components"
+                    items={[{
+                        icon: 'face',
+                        value: 'Avatars',
+                        onPress: () => this.changeScene('Avatars')
+                    }, {
+                        icon: 'label',
+                        value: 'Buttons',
+                        onPress: () => this.changeScene('Buttons')
+                    }, {
+                        icon: 'check-box',
+                        value: 'Checkboxes',
+                        onPress: () => this.changeScene('Checkboxes')
+                    }, {
+                        icon: 'label',
+                        value: 'Dividers',
+                        onPress: () => this.changeScene('Dividers')
+                    }, {
+                        icon: 'label',
+                        value: 'Icon Toggles',
+                        label: 'NEW',
+                        onPress: () => this.changeScene('IconToggles', 'Icon Toggles')
+                    }, {
+                        icon: 'radio-button-checked',
+                        value: 'Radio Buttons',
+                        onPress: () => this.changeScene('RadioButtons', 'Radio Buttons')
+                    }, {
+                        icon: 'list',
+                        value: 'List',
+                        label: 'NEW',
+                        onPress: () => this.changeScene('List', 'List')
+                    }, {
+                        icon: 'label',
+                        value: 'Subheaders',
+                        onPress: () => this.changeScene('Subheaders')
+                    }]}
                 />
                 <Divider />
-                <Drawer.Subheader value="Config" />
-                <Drawer.Item
-                    icon="invert-colors"
-                    value="Change Theme"
-                    onPress={() => this.changeScene('Themes', 'Change Theme')}
+                <Drawer.Section
+                    title="Config"
+                    items={[{
+                        icon: 'invert-colors',
+                        value: 'Change Theme',
+                        onPress: () => this.changeScene('Themes', 'Change Theme')
+                    }]}
                 />
+
             </Drawer>
         );
     }
