@@ -1,4 +1,5 @@
 import { AsyncStorage } from 'react-native';
+import SplashScreen from '@remobile/react-native-splashscreen';
 import alt from '../alt';
 import AppActions from '../actions/AppActions';
 
@@ -20,6 +21,8 @@ class AppStore {
     _loadTheme = () => {
         AsyncStorage.getItem(THEME).then((value) => {
             this.theme = value || 'paperTeal';
+            AppActions.updateTheme(this.theme);
+            SplashScreen.hide();
         });
     };
 
