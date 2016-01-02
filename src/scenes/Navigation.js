@@ -11,10 +11,32 @@ export default class Navigation extends Component {
         navigator: PropTypes.object.isRequired
     };
 
+    constructor(props) {
+        super(props);
+        this.state = {
+            route: AppStore.getState().routeName
+        }
+    }
+
+    componentDidMount = () => {
+        AppStore.listen(this.handleAppStore);
+    };
+
+    componentWillUnmount = () => {
+        AppStore.unlisten(this.handleAppStore);
+    };
+
+    handleAppStore = (store) => {
+        this.setState({
+            route: store.routeName
+        });
+    };
+
     changeScene = (name, title) => {
         const { drawer, navigator } = this.context;
+        const { route } = this.state;
 
-        if (AppStore.getState().routeName !== name) {
+        if (route !== name) {
             try {
                 let component;
 
@@ -37,6 +59,9 @@ export default class Navigation extends Component {
                     case 'List':
                         component = require('./List').default;
                         break;
+                    case 'IconToggles':
+                        component = require('./IconToggles').default;
+                        break;
                     case 'RadioButtons':
                         component = require('./RadioButtons').default;
                         break;
@@ -56,7 +81,6 @@ export default class Navigation extends Component {
                     navigator.replace({ name, component: component });
                     drawer.closeDrawer();
                 }
-
             } catch (e) {
                 console.warn('An error occurred loading the scene:', e);
             }
@@ -66,67 +90,105 @@ export default class Navigation extends Component {
     };
 
     render() {
+        let { route } = this.state;
+        if (!route) {
+            route = 'Welcome';
+        }
+
         return (
             <Drawer theme='light'>
                 <Drawer.Header image={<Image source={require('./../img/nav.jpg')} />}>
                     <View style={styles.header}>
-                        <Avatar size={80} src="http://facebook.github.io/react-native/img/opengraph.png?2"/>
+                        <Avatar size={80} image={<Image source={{ uri: "http://facebook.github.io/react-native/img/opengraph.png?2" }}/>} />
                         <Text style={[styles.text, COLOR.paperGrey50, TYPO.paperFontSubhead]}>React Native Material Design</Text>
                     </View>
                 </Drawer.Header>
 
-                <Drawer.Item
-                    icon="home"
-                    value="Welcome"
-                    onPress={() => this.changeScene('Welcome')}
-                />
-                <Drawer.Subheader value="Components" />
-                <Drawer.Item
-                    icon="face"
-                    value="Avatars"
-                    label="12"
-                    onPress={() => this.changeScene('Avatars')}
-                />
-                <Drawer.Item
-                    icon="label"
-                    value="Buttons"
-                    label="8"
-                    onPress={() => this.changeScene('Buttons')}
-                />
-                <Drawer.Item
-                    icon="check-box"
-                    value="Checkboxes"
-                    label="10"
-                    onPress={() => this.changeScene('Checkboxes')}
+                <Drawer.Section
+                    items={[{
+                        icon: 'home',
+                        value: 'Welcome',
+                        active: route === 'Welcome',
+                        onPress: () => this.changeScene('Welcome'),
+                        onLongPress: () => this.changeScene('Welcome')
+                    }]}
                 />
 
-                <Drawer.Item
-                    icon="label"
-                    value="Dividers"
-                    label="New!"
-                    onPress={() => this.changeScene('Dividers')}
+                <Drawer.Section
+                    title="Components"
+                    items={[{
+                        icon: 'face',
+                        value: 'Avatars',
+                        label="12",
+                        active: route === 'Avatars',
+                        onPress: () => this.changeScene('Avatars'),
+                        onLongPress: () => this.changeScene('Avatars')
+                    }, {
+                        icon: 'label',
+                        value: 'Buttons',
+                        active: route === 'Buttons',
+                        label="8",
+                        onPress: () => this.changeScene('Buttons'),
+                        onLongPress: () => this.changeScene('Buttons')
+                    }, {
+                        icon: 'check-box',
+                        value: 'Checkboxes',
+                        label="10"
+                        active: route === 'Checkboxes',
+                        onPress: () => this.changeScene('Checkboxes'),
+                        onLongPress: () => this.changeScene('Checkboxes')
+                    }, {
+                        icon: 'label',
+                        value: 'Dividers',
+                        label="10",
+                        active: route === 'Dividers',
+                        onPress: () => this.changeScene('Dividers'),
+                        onLongPress: () => this.changeScene('Dividers')
+                    }, {
+                        icon: 'label',
+                        value: 'Icon Toggles',
+                        label: 'NEW',
+                        active: route === 'Icon Toggles',
+                        onPress: () => this.changeScene('IconToggles', 'Icon Toggles'),
+                        onLongPress: () => this.changeScene('IconToggles', 'Icon Toggles')
+                    }, {
+                        icon: 'radio-button-checked',
+                        value: 'Radio Buttons',
+                        label="8",
+                        active: route === 'Radio Buttons',
+                        onPress: () => this.changeScene('RadioButtons', 'Radio Buttons'),
+                        onLongPress: () => this.changeScene('RadioButtons', 'Radio Buttons')
+                    },
+                    // {
+                        //icon: 'list',
+                        //value: 'List',
+                        //label: 'NEW',
+                        //active: route === 'List',
+                        //onPress: () => this.changeScene('List'),
+                        //onLongPress: () => this.changeScene('List')
+                    // },
+                    {
+                        icon: 'label',
+                        value: 'Subheaders',
+                        label="4",
+                        active: route === 'Subheaders',
+                        onPress: () => this.changeScene('Subheaders'),
+                        onLongPress: () => this.changeScene('Subheaders')
+                    }]}
                 />
-                <Drawer.Item
-                    icon="radio-button-checked"
-                    value="RadioButtons"
-                    label="8"
-                    onPress={() => this.changeScene('RadioButtons')}
+                <Divider style={{ marginTop: 8 }} />
+                <Drawer.Section
+                    title="Config"
+                    items={[{
+                        icon: 'invert-colors',
+                        value: 'Change Theme',
+                        label="24",
+                        active: route === 'Change Theme',
+                        onPress: () => this.changeScene('Themes', 'Change Theme'),
+                        onLongPress: () => this.changeScene('Themes', 'Change Theme')
+                    }]}
                 />
 
-                <Drawer.Item
-                    icon="label"
-                    value="Subheaders"
-                    label="4"
-                    onPress={() => this.changeScene('Subheaders')}
-                />
-                <Divider />
-                <Drawer.Subheader value="Config" />
-                <Drawer.Item
-                    icon="invert-colors"
-                    value="Change Theme"
-                    label="24"
-                    onPress={() => this.changeScene('Themes', 'Change Theme')}
-                />
             </Drawer>
         );
     }

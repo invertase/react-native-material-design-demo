@@ -6,8 +6,10 @@
     "start": "react-native start"
   },
   "dependencies": {
+    "@remobile/react-native-splashscreen": "^1.0.3",
     "alt": "^0.18.1",
     "react-native": "^0.17.0",
-    "react-native-material-design": "^0.2.1"
+    "react-native-android-statusbar": "^0.1.2",
+    "react-native-material-design": "^0.3.0"
   }
 }

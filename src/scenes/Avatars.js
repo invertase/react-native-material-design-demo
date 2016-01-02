@@ -1,4 +1,4 @@
-import React, { Component, View } from 'react-native';
+import React, { Component, View, Image } from 'react-native';
 import { Avatar, Subheader, COLOR } from 'react-native-material-design';
 
 export default class Avatars extends Component {
@@ -8,10 +8,10 @@ export default class Avatars extends Component {
             <View>
                 <Subheader text="Avatar with external image"/>
                 <View style={styles.avatarContainer}>
-                    <Avatar src="https://s3.amazonaws.com/uifaces/faces/twitter/ok/128.jpg"/>
-                    <Avatar src="https://s3.amazonaws.com/uifaces/faces/twitter/pixeliris/128.jpg"/>
-                    <Avatar src="https://s3.amazonaws.com/uifaces/faces/twitter/sillyleo/128.jpg"/>
-                    <Avatar src="https://s3.amazonaws.com/uifaces/faces/twitter/iannnnn/128.jpg"/>
+                    <Avatar image={<Image source={{ uri: 'https://s3.amazonaws.com/uifaces/faces/twitter/ok/128.jpg' }} />} />
+                    <Avatar image={<Image source={{ uri: 'https://s3.amazonaws.com/uifaces/faces/twitter/pixeliris/128.jpg' }} />} />
+                    <Avatar image={<Image source={{ uri: 'https://s3.amazonaws.com/uifaces/faces/twitter/sillyleo/128.jpg' }} />} />
+                    <Avatar image={<Image source={{ uri: 'https://s3.amazonaws.com/uifaces/faces/twitter/iannnnn/128.jpg' }} />} />
                 </View>
 
                 <Subheader text="Avatar with MaterialIcon"/>
@@ -23,10 +23,10 @@ export default class Avatars extends Component {
                 </View>
                 <Subheader text="Avatar with different sizes"/>
                 <View style={styles.avatarContainer}>
-                    <Avatar src="http://facebook.github.io/react-native/img/opengraph.png?2"/>
-                    <Avatar size={60} src="http://facebook.github.io/react-native/img/opengraph.png?2"/>
-                    <Avatar size={80} src="http://facebook.github.io/react-native/img/opengraph.png?2"/>
-                    <Avatar size={120} src="http://facebook.github.io/react-native/img/opengraph.png?2"/>
+                    <Avatar image={<Image source={{ uri: 'http://facebook.github.io/react-native/img/opengraph.png?2' }} />} />
+                    <Avatar size={60} image={<Image source={{ uri: 'http://facebook.github.io/react-native/img/opengraph.png?2' }} />} />
+                    <Avatar size={80} image={<Image source={{ uri: 'http://facebook.github.io/react-native/img/opengraph.png?2' }} />} />
+                    <Avatar size={120} image={<Image source={{ uri: 'http://facebook.github.io/react-native/img/opengraph.png?2' }} />} />
                 </View>
             </View>
         );
