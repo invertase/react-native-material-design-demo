@@ -91,13 +91,12 @@ export default class Navigation extends Component {
 
     render() {
         let { route } = this.state;
-
         if (!route) {
             route = 'Welcome';
         }
 
         return (
-            <Drawer theme='dark'>
+            <Drawer theme='light'>
                 <Drawer.Header image={<Image source={require('./../img/nav.jpg')} />}>
                     <View style={styles.header}>
                         <Avatar size={80} image={<Image source={{ uri: "http://facebook.github.io/react-native/img/opengraph.png?2" }}/>} />
@@ -154,14 +153,16 @@ export default class Navigation extends Component {
                         active: route === 'Radio Buttons',
                         onPress: () => this.changeScene('RadioButtons', 'Radio Buttons'),
                         onLongPress: () => this.changeScene('RadioButtons', 'Radio Buttons')
-                    }, {
-                        icon: 'list',
-                        value: 'List',
-                        label: 'NEW',
-                        active: route === 'List',
-                        onPress: () => this.changeScene('List'),
-                        onLongPress: () => this.changeScene('List')
-                    }, {
+                    },
+                    // {
+                        //icon: 'list',
+                        //value: 'List',
+                        //label: 'NEW',
+                        //active: route === 'List',
+                        //onPress: () => this.changeScene('List'),
+                        //onLongPress: () => this.changeScene('List')
+                    // },
+                    {
                         icon: 'label',
                         value: 'Subheaders',
                         active: route === 'Subheaders',
