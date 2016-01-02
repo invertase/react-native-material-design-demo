@@ -1,3 +1,8 @@
 rootProject.name = 'DemoApp'
 
 include ':app'
+include ':react-native-android-statusbar'
+include ':react-native-splashscreen'
+
+project(':react-native-android-statusbar').projectDir = new File(settingsDir, '../node_modules/react-native-android-statusbar')
+project(':react-native-splashscreen').projectDir = new File(rootProject.projectDir, '../node_modules/@remobile/react-native-splashscreen/android')

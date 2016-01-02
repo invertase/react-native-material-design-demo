@@ -50,7 +50,7 @@ export default class Toolbar extends Component {
                 onIconPress={onIconPress}
                 actions={[{
                     icon: 'warning',
-                    counter: counter,
+                    badge: { value: counter },
                     onPress: this.increment
                 }]}
                 style={{
