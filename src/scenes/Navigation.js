@@ -119,6 +119,7 @@ export default class Navigation extends Component {
                     items={[{
                         icon: 'face',
                         value: 'Avatars',
+                        label: '12',
                         active: route === 'Avatars',
                         onPress: () => this.changeScene('Avatars'),
                         onLongPress: () => this.changeScene('Avatars')
@@ -126,17 +127,20 @@ export default class Navigation extends Component {
                         icon: 'label',
                         value: 'Buttons',
                         active: route === 'Buttons',
+                        label: '8',
                         onPress: () => this.changeScene('Buttons'),
                         onLongPress: () => this.changeScene('Buttons')
                     }, {
                         icon: 'check-box',
                         value: 'Checkboxes',
+                        label: '10',
                         active: route === 'Checkboxes',
                         onPress: () => this.changeScene('Checkboxes'),
                         onLongPress: () => this.changeScene('Checkboxes')
                     }, {
                         icon: 'label',
                         value: 'Dividers',
+                        label: '10',
                         active: route === 'Dividers',
                         onPress: () => this.changeScene('Dividers'),
                         onLongPress: () => this.changeScene('Dividers')
@@ -150,6 +154,7 @@ export default class Navigation extends Component {
                     }, {
                         icon: 'radio-button-checked',
                         value: 'Radio Buttons',
+                        label: '8',
                         active: route === 'Radio Buttons',
                         onPress: () => this.changeScene('RadioButtons', 'Radio Buttons'),
                         onLongPress: () => this.changeScene('RadioButtons', 'Radio Buttons')
@@ -165,6 +170,7 @@ export default class Navigation extends Component {
                     {
                         icon: 'label',
                         value: 'Subheaders',
+                        label: '4',
                         active: route === 'Subheaders',
                         onPress: () => this.changeScene('Subheaders'),
                         onLongPress: () => this.changeScene('Subheaders')
@@ -176,6 +182,7 @@ export default class Navigation extends Component {
                     items={[{
                         icon: 'invert-colors',
                         value: 'Change Theme',
+                        label: '24',
                         active: route === 'Change Theme',
                         onPress: () => this.changeScene('Themes', 'Change Theme'),
                         onLongPress: () => this.changeScene('Themes', 'Change Theme')
