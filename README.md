@@ -19,7 +19,7 @@ This repository contains a React Native project, implementing the [react-native-
 
 This APK is in Debug mode for now. Will move it into **Production mode**(which means, it will be faster and more optimized) soon.
 
-[Download APK](https://github.com/react-native-material-design/react-native-material-design/demo-app.apk)
+[Download APK](https://github.com/react-native-material-design/demo-app/blob/master/demo-app.apk?raw=true)
 
 ## How it works
 
