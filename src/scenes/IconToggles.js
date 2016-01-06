@@ -99,7 +99,7 @@ export default class IconToggles extends Component {
 						badge={{ value: this.state.badgeOne }}
 						onPress={() => { this.incrementBadge('badgeOne') }}>
 						<Icon
-							name="live-help"
+							name="forum"
 							color="paperGrey900"
 							style={styles.icon}
 						/>
@@ -126,7 +126,7 @@ export default class IconToggles extends Component {
                         }}
 						onPress={() => { this.incrementBadge('badgeThree') }}>
 						<Icon
-							name="forum"
+							name="shopping-cart"
 							color="paperGrey900"
 							style={styles.icon}
 						/>
