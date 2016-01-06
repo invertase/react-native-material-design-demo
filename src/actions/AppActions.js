@@ -4,10 +4,6 @@ import { COLOR } from 'react-native-material-design';
 
 class AppActions {
 
-    updateRouteName(name) {
-        return name;
-    }
-
     updateTheme(name) {
         StatusBarAndroid.setHexColor(COLOR[`${name}700`].color);
         return name;

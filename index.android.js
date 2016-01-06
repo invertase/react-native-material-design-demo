@@ -1,6 +1,7 @@
 import React, { AppRegistry, Component, Navigator, DrawerLayoutAndroid, ScrollView, View, Text } from 'react-native';
-import { Toolbar } from './src/components';
 
+import Navigate from './src/utils/Navigate';
+import { Toolbar } from './src/components';
 import Navigation from './src/scenes/Navigation';
 import Welcome from './src/scenes/Welcome';
 
@@ -35,7 +36,7 @@ class Application extends Component {
 
     setNavigator = (navigator) => {
         this.setState({
-            navigator
+            navigator: new Navigate(navigator)
         });
     };
 
@@ -58,21 +59,24 @@ class Application extends Component {
             >
                 {drawer &&
                 <Navigator
-                    initialRoute={{ name: 'Welcome', component: Welcome }}
+                    initialRoute={Navigate.init('welcome')}
                     navigationBar={<Toolbar onIconPress={drawer.openDrawer} />}
                     configureScene={() => {
                             return Navigator.SceneConfigs.FadeAndroid;
                         }}
                     ref={(navigator) => { !this.state.navigator ? this.setNavigator(navigator) : null }}
-                    renderScene={(route, navigator) => {
-                            if (this.state.navigator && route.component) {
-                                return (
-                                    <ScrollView style={styles.scene} showsVerticalScrollIndicator={false}>
-                                        <route.component route={route} navigator={navigator} />
-                                    </ScrollView>
-                                );
-                            }
-                        }}
+                    renderScene={(route) => {
+                        if (this.state.navigator && route.component) {
+                            return (
+                                <ScrollView
+                                    style={styles.scene}
+                                    showsVerticalScrollIndicator={false}
+                                >
+                                    <route.component name={route.name} path={route.path} {...route.props} />
+                                </ScrollView>
+                            );
+                        }
+                    }}
                 />
                 }
             </DrawerLayoutAndroid>

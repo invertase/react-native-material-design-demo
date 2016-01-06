@@ -4,6 +4,14 @@ import AppStore from '../stores/AppStore';
 
 export default class Toolbar extends Component {
 
+    static contextTypes = {
+        navigator: PropTypes.object
+    };
+
+    static propTypes = {
+        onIconPress: PropTypes.func.isRequired
+    };
+
     constructor(props) {
         super(props);
         this.state = {
@@ -34,20 +42,17 @@ export default class Toolbar extends Component {
         });
     };
 
-    static propTypes = {
-        onIconPress: PropTypes.func.isRequired
-    };
-
     render() {
+        const { navigator } = this.context;
         const { title, theme, counter } = this.state;
         const { onIconPress } = this.props;
 
         return (
             <MaterialToolbar
-                title={title || 'Welcome'}
+                title={navigator && navigator.currentRoute ? navigator.currentRoute.name : 'Welcome'}
                 primary={theme}
-                icon='menu'
-                onIconPress={onIconPress}
+                icon={navigator && navigator.isChild ? 'keyboard-backspace' : 'menu'}
+                onIconPress={() => navigator && navigator.isChild ? navigator.back() : onIconPress()}
                 actions={[{
                     icon: 'warning',
                     badge: { value: counter },

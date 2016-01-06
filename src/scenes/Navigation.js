@@ -1,6 +1,4 @@
 import React, { Component, PropTypes, View, Text, Image } from 'react-native';
-import AppActions from '../actions/AppActions';
-import AppStore from '../stores/AppStore';
 
 import { Avatar, Drawer, Divider, COLOR, TYPO } from 'react-native-material-design';
 
@@ -14,86 +12,22 @@ export default class Navigation extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            route: AppStore.getState().routeName
+            route: null
         }
     }
 
-    componentDidMount = () => {
-        AppStore.listen(this.handleAppStore);
-    };
-
-    componentWillUnmount = () => {
-        AppStore.unlisten(this.handleAppStore);
-    };
-
-    handleAppStore = (store) => {
-        this.setState({
-            route: store.routeName
-        });
-    };
-
-    changeScene = (name, title) => {
+    changeScene = (path, name) => {
         const { drawer, navigator } = this.context;
-        const { route } = this.state;
 
-        if (route !== name) {
-            try {
-                let component;
-
-                switch (name) {
-                    case 'Welcome':
-                        component = require('./Welcome').default;
-                        break;
-                    case 'Avatars':
-                        component = require('./Avatars').default;
-                        break;
-                    case 'Buttons':
-                        component = require('./Buttons').default;
-                        break;
-                    case 'Checkboxes':
-                        component = require('./Checkboxes').default;
-                        break;
-                    case 'Dividers':
-                        component = require('./Dividers').default;
-                        break;
-                    case 'List':
-                        component = require('./List').default;
-                        break;
-                    case 'IconToggles':
-                        component = require('./IconToggles').default;
-                        break;
-                    case 'RadioButtons':
-                        component = require('./RadioButtons').default;
-                        break;
-                    case 'Subheaders':
-                        component = require('./Subheaders').default;
-                        break;
-                    case 'Themes':
-                        component = require('./Themes').default;
-                        break;
-                    default:
-                        console.warn('No scene found');
-                        break;
-                }
-
-                if (component) {
-                    AppActions.updateRouteName(title || name);
-                    navigator.replace({ name, component: component });
-                    drawer.closeDrawer();
-                }
-            } catch (e) {
-                console.warn('An error occurred loading the scene:', e);
-            }
-        } else {
-            drawer.closeDrawer();
-        }
+        this.setState({
+            route: path
+        });
+        navigator.to(path, name);
+        drawer.closeDrawer();
     };
 
     render() {
-        let { route } = this.state;
-        if (!route) {
-            route = 'Welcome';
-        }
+        const { route } = this.state;
 
         return (
             <Drawer theme='light'>
@@ -108,9 +42,9 @@ export default class Navigation extends Component {
                     items={[{
                         icon: 'home',
                         value: 'Welcome',
-                        active: route === 'Welcome',
-                        onPress: () => this.changeScene('Welcome'),
-                        onLongPress: () => this.changeScene('Welcome')
+                        active: !route || route === 'welcome',
+                        onPress: () => this.changeScene('welcome'),
+                        onLongPress: () => this.changeScene('welcome')
                     }]}
                 />
 
@@ -120,44 +54,44 @@ export default class Navigation extends Component {
                         icon: 'face',
                         value: 'Avatars',
                         label: '12',
-                        active: route === 'Avatars',
-                        onPress: () => this.changeScene('Avatars'),
-                        onLongPress: () => this.changeScene('Avatars')
+                        active: route === 'avatars',
+                        onPress: () => this.changeScene('avatars'),
+                        onLongPress: () => this.changeScene('avatars')
                     }, {
                         icon: 'label',
                         value: 'Buttons',
-                        active: route === 'Buttons',
+                        active: route === 'buttons',
                         label: '8',
-                        onPress: () => this.changeScene('Buttons'),
-                        onLongPress: () => this.changeScene('Buttons')
+                        onPress: () => this.changeScene('buttons'),
+                        onLongPress: () => this.changeScene('buttons')
                     }, {
                         icon: 'check-box',
                         value: 'Checkboxes',
                         label: '10',
-                        active: route === 'Checkboxes',
-                        onPress: () => this.changeScene('Checkboxes'),
-                        onLongPress: () => this.changeScene('Checkboxes')
+                        active: route === 'checkboxes',
+                        onPress: () => this.changeScene('checkboxes'),
+                        onLongPress: () => this.changeScene('checkboxes')
                     }, {
                         icon: 'label',
                         value: 'Dividers',
                         label: '10',
-                        active: route === 'Dividers',
-                        onPress: () => this.changeScene('Dividers'),
-                        onLongPress: () => this.changeScene('Dividers')
+                        active: route === 'dividers',
+                        onPress: () => this.changeScene('dividers'),
+                        onLongPress: () => this.changeScene('dividers')
                     }, {
                         icon: 'label',
                         value: 'Icon Toggles',
                         label: 'NEW',
-                        active: route === 'Icon Toggles',
-                        onPress: () => this.changeScene('IconToggles', 'Icon Toggles'),
-                        onLongPress: () => this.changeScene('IconToggles', 'Icon Toggles')
+                        active: route === 'icon-toggles',
+                        onPress: () => this.changeScene('icon-toggles'),
+                        onLongPress: () => this.changeScene('icon-toggles')
                     }, {
                         icon: 'radio-button-checked',
                         value: 'Radio Buttons',
                         label: '8',
-                        active: route === 'Radio Buttons',
-                        onPress: () => this.changeScene('RadioButtons', 'Radio Buttons'),
-                        onLongPress: () => this.changeScene('RadioButtons', 'Radio Buttons')
+                        active: route === 'radio-buttons',
+                        onPress: () => this.changeScene('radio-buttons'),
+                        onLongPress: () => this.changeScene('radio-buttons')
                     },
                     // {
                         //icon: 'list',
@@ -171,9 +105,9 @@ export default class Navigation extends Component {
                         icon: 'label',
                         value: 'Subheaders',
                         label: '4',
-                        active: route === 'Subheaders',
-                        onPress: () => this.changeScene('Subheaders'),
-                        onLongPress: () => this.changeScene('Subheaders')
+                        active: route === 'subheaders',
+                        onPress: () => this.changeScene('subheaders'),
+                        onLongPress: () => this.changeScene('subheaders')
                     }]}
                 />
                 <Divider style={{ marginTop: 8 }} />
@@ -183,9 +117,9 @@ export default class Navigation extends Component {
                         icon: 'invert-colors',
                         value: 'Change Theme',
                         label: '24',
-                        active: route === 'Change Theme',
-                        onPress: () => this.changeScene('Themes', 'Change Theme'),
-                        onLongPress: () => this.changeScene('Themes', 'Change Theme')
+                        active: route === 'themes',
+                        onPress: () => this.changeScene('themes'),
+                        onLongPress: () => this.changeScene('themes')
                     }]}
                 />
 
