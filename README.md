@@ -45,37 +45,41 @@ found in `./src/utils/Navigate`, which allows for navigation around the app, and
 
 The Navigate class needs to be instantiated on application boot, with a reference to React's `Navigator` API passed. An example of this can be found [here](https://github.com/react-native-material-design/demo-app/blob/master/index.android.js#L39).
 
-Once instantiated, the class exposed a few methods to help with simple app navigation. First however, we must define our routes. The class looks for a `routes.js` file in the root of the `src` directory.
+Once instantiated, the class exposes a few methods to help with simple app navigation. First however, we must define our routes. The class looks for a `routes.js` file in the root of the `src` directory. 
 
-The class also handles `hardwareBackPress` events correctly, only exiting the app if we're on a root route. Otherwise, it calls the `back()` method.
+The class also handles `hardwareBackPress` events correctly, only exiting the app if we're on a parent route. Otherwise, it calls the `back()` method.
 
-#### routes.js
+#### Routes
 
-This is a simple object based pattern of component and children, an example of which can be found [here](https://github.com/react-native-material-design/demo-app/blob/master/src/routes.js).
+This is a simple object based pattern of components and their children, an example of which can be found [here](https://github.com/react-native-material-design/demo-app/blob/master/src/routes.js).
 
-Top level objects are considered to be the "root" scenes of your app, and are defined by object key name. Each object should contain a name and component, for example:
+Top level objects are considered to be the "parent" scenes of your app, and are defined by object keys. Each object should contain a name and a component property. See below example.
 
-```
+##### Basic Routes Config Example
+
+```javascript
 export default {
 
-    root: {
-        name: 'Root Scene',
-        component: require('./scenes/SomeRootScene').default
+    parent: {
+        name: 'Parent Scene',
+        component: require('./scenes/SomeParentScene').default
     }
 
 }
 ```
 
-You can have as many root objects as you like.
+You can have as many parent key objects as you like.
 
-If you wish to define some children of this route, simply add a `children` object, with the same pattern as above, for example:
+If you wish to define some children of this route, simply add a `children` object, with the same pattern as above. See below example.
 
-```
+##### Advanced Routes Config Example
+
+```javascript
 export default {
 
-    root: {
-        name: 'Root Scene',
-        component: require('./scenes/SomeRootScene').default,
+    parent: {
+        name: 'Parent Scene',
+        component: require('./scenes/SomeParentScene').default,
 
         children: {
             child: {
@@ -83,8 +87,22 @@ export default {
                 component: require('./scenes/SomeChildScene').default,
             }
         }
-    }
+    },
+    'Another Parent': { // can be called anything
+        // name: 'Another Parent', // name is optional, defaults to the parent object key name 'Another Parent'
+        component: require('./scenes/AnotherParentScene').default,
 
+        children: {
+            'Another Child': { // can be called anything
+                // name: 'Another Child', // name is optional, will default to the parent object key name 'Another Child'
+                component: require('./scenes/SomeOtherChildScene').default,
+            },
+            'Yet Another Child': { // can be called anything
+                component: require('./scenes/SomeOtherChildScene').default,
+            }
+        }
+    }
+    
 }
 ```
 
@@ -92,21 +110,23 @@ You can have as many children, and children of children as you like.
 
 #### API
 
-##### `static init()`
+##### `static init(defaultRoute, [optional] routesConfig)`
 
-Can be called without class instantiation, and is used to get a base route. This is handy for configuring initial routes, for example [here](https://github.com/react-native-material-design/demo-app/blob/master/index.android.js#L62).
+Can be called without class instantiation, and is used to set a starting route. This is handy for configuring initial routes, for example [here](https://github.com/react-native-material-design/demo-app/blob/master/index.android.js#L62).
 
+```javascript
+Navigate.init('parent');
 ```
-Navigate.init('root');
-```
 
-> This can only be used with root routes.
+Optionally but not yet implemented you can pass the routes yourself via `Navigate.init('parent', { ...some routes });`
+
+> This can only be used with parent routes.
 
 ##### `to(path, name, props)`
 
 Used to directly access any route from any location.
 
-```
+```javascript
 Navigate.to('root.child', 'Custom Name', { some: 'prop' });
 ```
 
@@ -118,7 +138,7 @@ Navigate.to('root.child', 'Custom Name', { some: 'prop' });
 
 Used when going to the parent of the current route.
 
-```
+```javascript
 Navigate.back('Custom Name', { some: 'prop' });
 ```
 
@@ -129,7 +149,7 @@ Navigate.back('Custom Name', { some: 'prop' });
 
 Used when going to a child of the current route.
 
-```
+```javascript
 // Assuming the current route is "root":
 Navigate.forward('child', 'Custom Name', { some: 'prop' });
 Navigate.forward(null, 'Custom Name', { some: 'prop' });
