@@ -55,7 +55,7 @@ export default class Toolbar extends Component {
                 onIconPress={() => navigator && navigator.isChild ? navigator.back() : onIconPress()}
                 actions={[{
                     icon: 'warning',
-                    badge: { value: counter },
+                    badge: { value: counter, animate: true },
                     onPress: this.increment
                 }]}
                 style={{
