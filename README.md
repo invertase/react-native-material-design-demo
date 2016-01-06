@@ -47,6 +47,8 @@ The Navigate class needs to be instantiated on application boot, with a referenc
 
 Once instantiated, the class exposed a few methods to help with simple app navigation. First however, we must define our routes. The class looks for a `routes.js` file in the root of the `src` directory.
 
+The class also handles `hardwareBackPress` events correctly, only exiting the app if we're on a root route. Otherwise, it calls the `back()` method.
+
 #### routes.js
 
 This is a simple object based pattern of component and children, an example of which can be found [here](https://github.com/react-native-material-design/demo-app/blob/master/src/routes.js).

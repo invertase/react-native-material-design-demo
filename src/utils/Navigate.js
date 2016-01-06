@@ -1,3 +1,4 @@
+import { BackAndroid } from 'react-native';
 import routes from '../routes';
 
 export default class Navigate {
@@ -13,6 +14,22 @@ export default class Navigate {
         this.navigator = navigator;
         this.currentRoute = null;
         this.isChild = false;
+
+        BackAndroid.addEventListener('hardwareBackPress', this.hardwareBackPress);
+    };
+
+    /**
+     * Handle hardware back press
+     * @returns {boolean}
+     */
+    hardwareBackPress = () => {
+        if (!this.isChild) {
+            BackAndroid.exitApp();
+            return false;
+        } else {
+            this.back();
+            return true;
+        }
     };
 
     /**
