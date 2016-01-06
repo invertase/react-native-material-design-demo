@@ -43,13 +43,13 @@ found in `./src/utils/Navigate`, which allows for navigation around the app, and
 
 ### Navigate
 
-The Navigate class needs to be instantiated on application boot, with a reference to React's `Navigator` API passed. An example of this can be found [here]().
+The Navigate class needs to be instantiated on application boot, with a reference to React's `Navigator` API passed. An example of this can be found [here](https://github.com/react-native-material-design/demo-app/blob/master/index.android.js#L39).
 
 Once instantiated, the class exposed a few methods to help with simple app navigation. First however, we must define our routes. The class looks for a `routes.js` file in the root of the `src` directory.
 
 #### routes.js
 
-This is a simple object based pattern of component and children, an example of which can be found [here]().
+This is a simple object based pattern of component and children, an example of which can be found [here](https://github.com/react-native-material-design/demo-app/blob/master/src/routes.js).
 
 Top level objects are considered to be the "root" scenes of your app, and are defined by object key name. Each object should contain a name and component, for example:
 
@@ -92,7 +92,7 @@ You can have as many children, and children of children as you like.
 
 ##### `static init()`
 
-Can be called without class instantiation, and is used to get a base route. This is handy for configuring initial routes, for example [here]().
+Can be called without class instantiation, and is used to get a base route. This is handy for configuring initial routes, for example [here](https://github.com/react-native-material-design/demo-app/blob/master/index.android.js#L62).
 
 ```
 Navigate.init('root');
@@ -136,3 +136,18 @@ Navigate.forward(null, 'Custom Name', { some: 'prop' });
 `path`: <string> Optional path to a child route. If no path is supplied, the first child of the parent defined in `routes.js` will be used.
 `name`: <string> Optional name to use for the route. If left blank, the name from the `routes.js` file will be used.
 `props`: <object> Option object of props to pass to the next scene.
+
+##### `isChild`
+
+An exposed boolean value on the class updated on route change if applicable.
+
+If `true`, the current route is a child.
+If `false`,  the current route has no parent.
+
+##### `currentRoute`
+
+An exposed object which is updated on route change, containing the values of the current route.
+
+##### `navigator`
+
+The initial reference to the `Navigator` API.
