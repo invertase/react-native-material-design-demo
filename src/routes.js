@@ -1,59 +1,60 @@
 export default {
 
     welcome: {
-        name: 'Welcome',
+        title: 'Welcome',
+        initialRoute: true,
         component: require('./scenes/Welcome').default,
 
         children: {
             example: {
-                name: 'Child Example',
+                // title: 'Child Example', // optional
                 component: require('./scenes/NestedExample').default
             }
         }
     },
 
     avatars: {
-        name: 'Avatars',
+        title: 'Avatars',
         component: require('./scenes/Avatars').default
     },
 
     buttons: {
-        name: 'Buttons',
+        title: 'Buttons',
         component: require('./scenes/Buttons').default
     },
 
     checkboxes: {
-        name: 'Checkboxes',
+        title: 'Checkboxes',
         component: require('./scenes/Checkboxes').default
     },
 
     dividers: {
-        name: 'Dividers',
+        title: 'Dividers',
         component: require('./scenes/Dividers').default
     },
 
     list: {
-        name: 'List',
+        title: 'List',
         component: require('./scenes/List').default
     },
 
     'icon-toggles': {
-        name: 'Icon Toggles',
+        title: 'Icon Toggles',
         component: require('./scenes/IconToggles').default
     },
 
     'radio-buttons': {
-        name: 'Radio Buttons',
+        title: 'Radio Buttons',
         component: require('./scenes/RadioButtons').default
     },
 
     subheaders: {
-        name: 'Subheaders',
+        title: 'Subheaders',
         component: require('./scenes/Subheaders').default
     },
 
     themes: {
-        name: 'Change Theme',
+        title: 'Change Theme',
         component: require('./scenes/Themes').default
     }
 }

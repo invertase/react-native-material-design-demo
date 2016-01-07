@@ -1,4 +1,4 @@
-import React, { Component, View, Text } from 'react-native';
+import React, { Component, View, Text, WebView } from 'react-native';
 
 export default class Avatars extends Component {
 
@@ -12,6 +12,13 @@ export default class Avatars extends Component {
                     The top menu trigger has been swapped out with a back arrow, which will take us to the
                     parent of this route.
                 </Text>
+                <WebView
+                    ref={"webViewAndroidSample"}
+                    automaticallyAdjustContentInsets={false}
+                    url={"http://google.com"}
+                    javaScriptEnabledAndroid={true}
+                    scalesPageToFit={true}
+                />
             </View>
         );
     }

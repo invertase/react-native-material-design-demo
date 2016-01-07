@@ -49,7 +49,7 @@ export default class Toolbar extends Component {
 
         return (
             <MaterialToolbar
-                title={navigator && navigator.currentRoute ? navigator.currentRoute.name : 'Welcome'}
+                title={navigator && navigator.currentRoute ? navigator.currentRoute.title : 'Welcome'}
                 primary={theme}
                 icon={navigator && navigator.isChild ? 'keyboard-backspace' : 'menu'}
                 onIconPress={() => navigator && navigator.isChild ? navigator.back() : onIconPress()}
