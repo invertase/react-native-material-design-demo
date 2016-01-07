@@ -17,7 +17,7 @@ This repository contains a React Native project, implementing the [react-native-
 
 ### APK
 
-To download the production/release APK, click [here](https://github.com/react-native-material-design/demo-app/app-release.apk?raw=true)
+To download the production/release APK, click [here](https://github.com/react-native-material-design/demo-app/raw/master/app-release.apk)
 
 ## Can I use this as a base project?
 
