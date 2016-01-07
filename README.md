@@ -17,13 +17,14 @@ This repository contains a React Native project, implementing the [react-native-
 
 ### APK
 
-This APK is in Debug mode for now. Will move it into **Production mode**(which means, it will be faster and more optimized) soon.
-
-[Download APK](https://github.com/react-native-material-design/demo-app/blob/master/demo-app.apk?raw=true)
+To download the production/release APK, click [here](https://github.com/react-native-material-design/demo-app/app-release.apk?raw=true)
 
 ## Can I use this as a base project?
 
 Of course. Please remember though it is not a "fit all" solution and you'll need to configure it for your own project needs.
+
+To change the name of the project, edit `android/app/src/res/values/strings.xml`.
+To change the launcher icon of the project, change all of the `ic_launcher.png` icons within `android/app/src/res/mipmap-XXXX/`.
 
 ## How it works
 
@@ -45,7 +46,7 @@ found in `./src/utils/Navigate`, which allows for navigation around the app, and
 
 The Navigate class needs to be instantiated on application boot, with a reference to React's `Navigator` API passed. An example of this can be found [here](https://github.com/react-native-material-design/demo-app/blob/master/index.android.js#L39).
 
-Once instantiated, the class exposes a few methods to help with simple app navigation. First however, we must define our routes. The class looks for a `routes.js` file in the root of the `src` directory. 
+Once instantiated, the class exposes a few methods to help with simple app navigation. First however, we must define our routes. The class looks for a `routes.js` file in the root of the `src` directory.
 
 The class also handles `hardwareBackPress` events correctly, only exiting the app if we're on a parent route. Otherwise, it calls the `back()` method.
 
@@ -102,7 +103,7 @@ export default {
             }
         }
     }
-    
+
 }
 ```
 
