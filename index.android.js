@@ -66,11 +66,11 @@ class Application extends Component {
 					renderScene={(route) => {
                         if (this.state.navigator && route.component) {
                             return (
-                                <ScrollView
+                                <View
                                     style={styles.scene}
                                     showsVerticalScrollIndicator={false}>
                                 	<route.component title={route.title} path={route.path} {...route.props} />
-                                </ScrollView>
+                                </View>
                             );
                         }
                     }}
@@ -85,7 +85,7 @@ AppRegistry.registerComponent('DemoApp', () => Application);
 
 const styles = {
 	scene: {
-		marginTop: 56,
-		paddingBottom: 56
+		flex: 1,
+		marginTop: 56
 	}
 };

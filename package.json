@@ -10,8 +10,9 @@
   "dependencies": {
     "@remobile/react-native-splashscreen": "^1.0.3",
     "alt": "^0.18.1",
-    "react-native": "^0.17.0",
+    "react-native": "^0.18.0",
+    "react-native-action-button": "^1.0.8",
     "react-native-android-statusbar": "^0.1.2",
-    "react-native-material-design": "^0.3.0"
+    "react-native-material-design": "git+https://github.com/react-native-material-design/react-native-material-design.git"
   }
 }

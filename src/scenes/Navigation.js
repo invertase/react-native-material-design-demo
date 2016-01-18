@@ -93,14 +93,14 @@ export default class Navigation extends Component {
                         onPress: () => this.changeScene('radio-buttons'),
                         onLongPress: () => this.changeScene('radio-buttons')
                     },
-                    // {
-                        //icon: 'list',
-                        //value: 'List',
-                        //label: 'NEW',
-                        //active: route === 'List',
-                        //onPress: () => this.changeScene('List'),
-                        //onLongPress: () => this.changeScene('List')
-                    // },
+                     //{
+                     //   icon: 'list',
+                     //   value: 'List',
+                     //   label: 'NEW',
+                     //   active: route === 'list',
+                     //   onPress: () => this.changeScene('list'),
+                     //   onLongPress: () => this.changeScene('list')
+                     //},
                     {
                         icon: 'label',
                         value: 'Subheaders',

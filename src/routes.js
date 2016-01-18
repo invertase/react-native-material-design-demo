@@ -1,8 +1,9 @@
 export default {
 
     welcome: {
-        title: 'Welcome',
         initialRoute: true,
+
+        title: 'Welcome',
         component: require('./scenes/Welcome').default,
 
         children: {
@@ -19,6 +20,7 @@ export default {
     },
 
     buttons: {
+
         title: 'Buttons',
         component: require('./scenes/Buttons').default
     },
@@ -34,6 +36,7 @@ export default {
     },
 
     list: {
+
         title: 'List',
         component: require('./scenes/List').default
     },
@@ -44,6 +47,7 @@ export default {
     },
 
     'radio-buttons': {
+
         title: 'Radio Buttons',
         component: require('./scenes/RadioButtons').default
     },

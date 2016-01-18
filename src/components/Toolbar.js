@@ -44,7 +44,7 @@ export default class Toolbar extends Component {
 
     render() {
         const { navigator } = this.context;
-        const { title, theme, counter } = this.state;
+        const { theme, counter } = this.state;
         const { onIconPress } = this.props;
 
         return (
@@ -58,11 +58,8 @@ export default class Toolbar extends Component {
                     badge: { value: counter, animate: true },
                     onPress: this.increment
                 }]}
-                style={{
-                    position: 'absolute',
-                    top: 0,
-                    left: 0,
-                    right: 0
+                rightIconStyle={{
+                    margin: 10
                 }}
             />
         );

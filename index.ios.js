@@ -1,35 +1,19 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- */
-'use strict';
+import React, { AppRegistry, Component, StyleSheet, Text, View } from 'react-native';
 
-var React = require('react-native');
-var {
-  AppRegistry,
-  StyleSheet,
-  Text,
-  View,
-} = React;
-
-var DemoApp = React.createClass({
-  render: function() {
+class DemoApp extends Component {
+  render() {
     return (
       <View style={styles.container}>
         <Text style={styles.welcome}>
-          Welcome to React Native!
+          React Native Material Design
         </Text>
         <Text style={styles.instructions}>
-          To get started, edit index.ios.js
-        </Text>
-        <Text style={styles.instructions}>
-          Press Cmd+R to reload,{'\n'}
-          Cmd+D or shake for dev menu
+          iOS example coming soon... PRs welcome!
         </Text>
       </View>
     );
   }
-});
+}
 
 var styles = StyleSheet.create({
   container: {
@@ -47,7 +31,7 @@ var styles = StyleSheet.create({
     textAlign: 'center',
     color: '#333333',
     marginBottom: 5,
-  },
+  }
 });
 
 AppRegistry.registerComponent('DemoApp', () => DemoApp);
