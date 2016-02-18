@@ -10,14 +10,14 @@ try {
 export default class Navigate {
 
 	/**
-	 * Gets the initial root props
-	 * Accepts a parent route name and finds that routes props
-	 *    OR - Finds the first parent route with 'initialRoute' set to true.
-	 *    OR FINALLY - Returns the first parent route.
-	 * @param path
-	 * @param customRoutes
-	 * @returns {{path: *}}
-	 */
+	* Gets the initial root props
+	* Accepts a parent route name and finds that routes props
+	*    OR - Finds the first parent route with 'initialRoute' set to true.
+	*    OR FINALLY - Returns the first parent route.
+	* @param path
+	* @param customRoutes
+	* @returns {{path: *}}
+	*/
 	static getInitialRoute = (path, customRoutes) => {
 		if (customRoutes) {
 			routes = customRoutes;
@@ -40,9 +40,9 @@ export default class Navigate {
 				}
 			}
 			return initial || {
-					path,
-					...routes[Object.keys(routes)[0]]
-				}
+				path,
+				...routes[Object.keys(routes)[0]]
+			}
 		}
 	};
 
@@ -50,17 +50,18 @@ export default class Navigate {
 		this.navigator = navigator;
 		this.savedInstanceStates = new Map();
 		this.currentRoute = null;
+		this.previousRoute = null;
 		this.isChild = false;
 		BackAndroid.addEventListener('hardwareBackPress', this._hardwareBackPress);
 	}
 
 	/**
-	 * Generates a pretty name based off the last item in a route path.
-	 * Mainly for titles
-	 * @param path
-	 * @returns {string}
-	 * @private
-	 */
+	* Generates a pretty name based off the last item in a route path.
+	* Mainly for titles
+	* @param path
+	* @returns {string}
+	* @private
+	*/
 	_getPathPrettyName = (path) => {
 		path = path.split('.');
 		if (path.length === 1) {
@@ -72,25 +73,32 @@ export default class Navigate {
 	};
 
 	/**
-	 * Handle hardware back press
-	 * @returns {boolean}
-	 */
+	* Handle hardware back press
+	* @returns {boolean}
+	*/
 	_hardwareBackPress = () => {
-		if (!this.isChild) {
+		if (this.navigator.getCurrentRoutes()[0].path == Navigate.getInitialRoute().path) {
 			BackAndroid.exitApp();
 			return false;
 		} else {
-			this.back();
-			return true;
+			if (!this.isChild) {
+				route = Navigate.getInitialRoute();
+				this.currentRoute = route;
+				this.navigator.replace(route);
+				return true;
+			} else {
+				this.back();
+				return true;
+			}
 		}
 	};
 
 	/**
-	 * Deep get an object without passing in the 'children' key
-	 * @param path
-	 * @returns object
-	 * @private
-	 */
+	* Deep get an object without passing in the 'children' key
+	* @param path
+	* @returns object
+	* @private
+	*/
 	_getRouteObject = (path) => {
 		let obj = routes;
 		const properties = path.replace(/\./g, '.children.').split('.');
@@ -121,11 +129,11 @@ export default class Navigate {
 		return instanceState || null;
 	};
 	/**
-	 * Jump to a component at a certain path defined in routes
-	 * @param path
-	 * @param title
-	 * @param props
-	 */
+	* Jump to a component at a certain path defined in routes
+	* @param path
+	* @param title
+	* @param props
+	*/
 	to = (path, title, props) => {
 		if (!path) {
 			console.warn(`[Navigate.to(undefined)] A route path is required to navigate to`);
@@ -142,6 +150,7 @@ export default class Navigate {
 					component: obj.component,
 					props
 				};
+				this.previousRoute = this.currentRoute;
 				this.currentRoute = route;
 				this.navigator.replace(route);
 			}
@@ -149,15 +158,14 @@ export default class Navigate {
 	};
 
 	/**
-	 * Go back to the parent of the current component
-	 * @param title
-	 * @param props
-	 */
+	* Go back to the parent of the current component
+	* @param title
+	* @param props
+	*/
 	back = (title, props) => {
 		const current = this.navigator.getCurrentRoutes()[0].path;
 		const path = current.substr(0, current.lastIndexOf('.'));
 		const obj = this._getRouteObject(path);
-
 		const savedInstance = this._recoverInstanceState(path); // TODO
 
 		if (!obj) {
@@ -165,7 +173,8 @@ export default class Navigate {
 		} else {
 			this.isChild = path.split('.').length > 1;
 			const route = {
-				title: title ? title : (obj.title || this._getPathPrettyName(path)),
+				// title: title ? title : (obj.title || this._getPathPrettyName(path)),
+				title: title ? title : (this.previousRoute ? this.previousRoute.title : (obj.title || this._getPathPrettyName(path))),
 				path,
 				component: obj.component,
 				props
@@ -177,12 +186,12 @@ export default class Navigate {
 	};
 
 	/**
-	 * Go forward to a defined child component of the current route or the first child that exists
-	 * @param {String} child [Optional] Specify the name of the child to go to.
-	 * @param {String} title [Optional] Override the routes default title.
-	 * @param {Object} props [Optional] Send additional props that'll get bootstrapped onto the route
-	 * @param {Object} savedInstanceState [Optional] Send additional props that'll get bootstrapped onto the route
-	 */
+	* Go forward to a defined child component of the current route or the first child that exists
+	* @param {String} child [Optional] Specify the name of the child to go to.
+	* @param {String} title [Optional] Override the routes default title.
+	* @param {Object} props [Optional] Send additional props that'll get bootstrapped onto the route
+	* @param {Object} savedInstanceState [Optional] Send additional props that'll get bootstrapped onto the route
+	*/
 	forward = (child, title, props, savedInstanceState) => {
 		const current = this.navigator.getCurrentRoutes()[0].path;
 		const currentObject = this._getRouteObject(current);
@@ -202,6 +211,7 @@ export default class Navigate {
 						component: obj.component,
 						props
 					};
+					this.previousRoute = this.currentRoute;
 					this.currentRoute = route;
 					this.navigator.replace(route);
 				}
@@ -221,9 +231,9 @@ export default class Navigate {
 	};
 
 	/**
-	 * Returns the current route config.
-	 * @returns {*|makeAction}
-	 */
+	* Returns the current route config.
+	* @returns {*|makeAction}
+	*/
 	getRoutes = () => {
 		return routes;
 	};
@@ -231,6 +241,6 @@ export default class Navigate {
 	setRoutes = (newRoutes) => {
 		// todo deep clone?
 		routes = newRoutes;
-	}
+	};
 
-}
+};
