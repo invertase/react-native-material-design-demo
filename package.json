@@ -5,11 +5,13 @@
   "scripts": {
     "start": "react-native start",
     "buildRelease": "cd android && ./gradlew assembleRelease",
-    "installRelease": "cd android && ./gradlew installRelease"
+    "installRelease": "cd android && ./gradlew installRelease",
+    "postinstall": "find . -name 'fbjs' -print | grep '\\./node_modules/fbjs' -v | xargs rm -rf"
   },
   "dependencies": {
     "@remobile/react-native-splashscreen": "^1.0.3",
     "alt": "^0.18.1",
+    "fbjs": "^0.6.1",
     "react-native": "^0.18.0",
     "react-native-action-button": "^1.0.8",
     "react-native-android-statusbar": "^0.1.2",
