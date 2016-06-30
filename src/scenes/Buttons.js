@@ -13,9 +13,9 @@ export default class Buttons extends Component {
                 <Subheader text="Light Theme"/>
                 <View style={styles.content}>
                     <Button text="NORMAL" primary={theme} />
-                    <Button text="NORMAL RAISED" primary={theme} raised={true}/>
-                    <Button text="DISABLED" primary={theme} disabled={true}/>
-                    <Button text="DISABLED RAISED" primary={theme} disabled={true} raised={true}/>
+                    <Button text="NORMAL RAISED" primary={theme} raised/>
+                    <Button text="DISABLED" primary={theme} disabled/>
+                    <Button text="DISABLED RAISED" primary={theme} disabled raised/>
                 </View>
                 <Subheader text="Dark Theme"/>
                 <View style={{
@@ -23,9 +23,9 @@ export default class Buttons extends Component {
                         padding: 16
                     }}>
                     <Button text="NORMAL FLAT" primary={theme} theme="dark"/>
-                    <Button text="DISABLED FLAT" primary={theme} disabled={true} theme="dark"/>
-                    <Button text="NORMAL RAISED" primary={theme} theme="dark" raised={true}/>
-                    <Button text="DISABLED RAISED" primary={theme} disabled={true} theme="dark" raised={true}/>
+                    <Button text="DISABLED FLAT" primary={theme} disabled theme="dark"/>
+                    <Button text="NORMAL RAISED" primary={theme} theme="dark" raised/>
+                    <Button text="DISABLED RAISED" primary={theme} disabled theme="dark" raised/>
                 </View>
             </View>
         );
