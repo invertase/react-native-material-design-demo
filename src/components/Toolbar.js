@@ -1,4 +1,5 @@
-import React, { Component, PropTypes, Text, View } from 'react-native';
+import React, { Component } from 'react';
+import { PropTypes, Text, View } from 'react-native';
 import { Toolbar as MaterialToolbar } from 'react-native-material-design';
 import AppStore from '../stores/AppStore';
 
