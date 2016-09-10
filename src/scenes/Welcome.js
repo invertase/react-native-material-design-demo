@@ -21,7 +21,7 @@ export default class Welcome extends Component {
                         overlay
                     >
                         <Text style={[TYPO.paperFontHeadline, COLOR.paperGrey50]}>Welcome</Text>
-                        <Text style={[TYPO.paperSubhead, COLOR.paperGrey50]}>React Native Material Design</Text>
+                        <Text style={[TYPO.paperFontSubhead, COLOR.paperGrey50]}>React Native Material Design</Text>
                     </Card.Media>
                     <Card.Body>
                         <Text>To get started, vist the documentation over at Github! This page is an example of the Card component.</Text>
