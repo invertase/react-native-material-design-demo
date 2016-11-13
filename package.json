@@ -1,0 +1,43 @@
+{
+  "name": "ReactNativeStarterApp",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node node_modules/react-native/local-cli/cli.js start",
+    "lint": "./node_modules/.bin/eslint ./src",
+    "run:android": "react-native run-android",
+    "run:ios": "react-native run-ios",
+    "test": "jest"
+  },
+  "dependencies": {
+    "react": "15.3.2",
+    "react-native": "0.37.0",
+    "react-native-router-flux": "^3.36.0",
+    "react-native-material-design": "git+https://github.com/react-native-material-design/react-native-material-design.git#next",
+    "react-redux": "^4.4.5",
+    "redux": "^3.6.0",
+    "redux-devtools-extension": "^1.0.0",
+    "redux-immutable-state-invariant": "^1.2.4",
+    "redux-logger": "^2.7.0",
+    "redux-persist": "^4.0.0-alpha6",
+    "redux-thunk": "^2.1.0"
+  },
+  "jest": {
+    "preset": "jest-react-native"
+  },
+  "devDependencies": {
+    "babel-eslint": "^7.0.0",
+    "babel-jest": "16.0.0",
+    "babel-plugin-flow-react-proptypes": "^0.14.0",
+    "babel-preset-react-native": "1.9.0",
+    "eslint": "^3.8.1",
+    "eslint-config-airbnb": "^12.0.0",
+    "eslint-plugin-flowtype": "^2.20.0",
+    "eslint-plugin-import": "^2.0.1",
+    "eslint-plugin-jsx-a11y": "^2.2.3",
+    "eslint-plugin-react": "^6.4.1",
+    "jest": "16.0.1",
+    "jest-react-native": "16.0.0",
+    "react-test-renderer": "15.3.2"
+  }
+}
