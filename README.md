@@ -2,6 +2,8 @@
 
 This repository contains a React Native project, implementing the [react-native-material-design](https://github.com/react-native-material-design/react-native-material-design) package.
 
+View it online [here](https://appetize.io/app/hyp1m20y515c16cj5yw2karcjg)! (Credits to Appetize for free hosting).
+
 > Please submit all issues to [react-native-material-design](https://github.com/react-native-material-design/react-native-material-design/issues).
 
 ## Installation
