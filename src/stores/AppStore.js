@@ -10,10 +10,7 @@ class AppStore {
     constructor() {
         this._loadTheme();
 
-        this.routeName = '';
-
         this.bindListeners({
-            handleUpdateRouteName: AppActions.UPDATE_ROUTE_NAME,
             handleUpdateTheme: AppActions.UPDATE_THEME
         });
     }
@@ -25,11 +22,6 @@ class AppStore {
             SplashScreen.hide();
         });
     };
-
-    handleUpdateRouteName(name) {
-        this.routeName = name;
-    }
-
 
     handleUpdateTheme(name) {
         this.theme = name;

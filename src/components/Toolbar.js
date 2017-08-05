@@ -1,8 +1,17 @@
-import React, { Component, PropTypes, Text, View } from 'react-native';
+import React, { Component } from 'react';
+import { PropTypes, Text, View } from 'react-native';
 import { Toolbar as MaterialToolbar } from 'react-native-material-design';
 import AppStore from '../stores/AppStore';
 
 export default class Toolbar extends Component {
+
+    static contextTypes = {
+        navigator: PropTypes.object
+    };
+
+    static propTypes = {
+        onIconPress: PropTypes.func.isRequired
+    };
 
     constructor(props) {
         super(props);
@@ -34,30 +43,24 @@ export default class Toolbar extends Component {
         });
     };
 
-    static propTypes = {
-        onIconPress: PropTypes.func.isRequired
-    };
-
     render() {
-        const { title, theme, counter } = this.state;
+        const { navigator } = this.context;
+        const { theme, counter } = this.state;
         const { onIconPress } = this.props;
 
         return (
             <MaterialToolbar
-                title={title || 'Welcome'}
+                title={navigator && navigator.currentRoute ? navigator.currentRoute.title : 'Welcome'}
                 primary={theme}
-                icon='menu'
-                onIconPress={onIconPress}
+                icon={navigator && navigator.isChild ? 'keyboard-backspace' : 'menu'}
+                onIconPress={() => navigator && navigator.isChild ? navigator.back() : onIconPress()}
                 actions={[{
                     icon: 'warning',
-                    badge: { value: counter },
+                    badge: { value: counter, animate: true },
                     onPress: this.increment
                 }]}
-                style={{
-                    position: 'absolute',
-                    top: 0,
-                    left: 0,
-                    right: 0
+                rightIconStyle={{
+                    margin: 10
                 }}
             />
         );

@@ -12,20 +12,20 @@ export default class Buttons extends Component {
             <View>
                 <Subheader text="Light Theme"/>
                 <View style={styles.content}>
-                    <Button value="NORMAL" primary={theme} />
-                    <Button value="NORMAL RAISED" primary={theme} raised={true}/>
-                    <Button value="DISABLED" primary={theme} disabled={true}/>
-                    <Button value="DISABLED RAISED" primary={theme} disabled={true} raised={true}/>
+                    <Button text="NORMAL" primary={theme} />
+                    <Button text="NORMAL RAISED" primary={theme} raised/>
+                    <Button text="DISABLED" primary={theme} disabled/>
+                    <Button text="DISABLED RAISED" primary={theme} disabled raised/>
                 </View>
                 <Subheader text="Dark Theme"/>
                 <View style={{
                         backgroundColor: COLOR.paperGrey900.color,
                         padding: 16
                     }}>
-                    <Button value="NORMAL FLAT" primary={theme} theme="dark"/>
-                    <Button value="DISABLED FLAT" primary={theme} disabled={true} theme="dark"/>
-                    <Button value="NORMAL RAISED" primary={theme} theme="dark" raised={true}/>
-                    <Button value="DISABLED RAISED" primary={theme} disabled={true} theme="dark" raised={true}/>
+                    <Button text="NORMAL FLAT" primary={theme} theme="dark"/>
+                    <Button text="DISABLED FLAT" primary={theme} disabled theme="dark"/>
+                    <Button text="NORMAL RAISED" primary={theme} theme="dark" raised/>
+                    <Button text="DISABLED RAISED" primary={theme} disabled theme="dark" raised/>
                 </View>
             </View>
         );

@@ -1,11 +1,11 @@
-import React, { Component, View, Image } from 'react-native';
+import React, { Component, ScrollView, View, Image } from 'react-native';
 import { Avatar, Subheader, COLOR } from 'react-native-material-design';
 
 export default class Avatars extends Component {
 
     render() {
         return (
-            <View>
+            <ScrollView>
                 <Subheader text="Avatar with external image"/>
                 <View style={styles.avatarContainer}>
                     <Avatar image={<Image source={{ uri: 'https://s3.amazonaws.com/uifaces/faces/twitter/ok/128.jpg' }} />} />
@@ -28,7 +28,14 @@ export default class Avatars extends Component {
                     <Avatar size={80} image={<Image source={{ uri: 'http://facebook.github.io/react-native/img/opengraph.png?2' }} />} />
                     <Avatar size={120} image={<Image source={{ uri: 'http://facebook.github.io/react-native/img/opengraph.png?2' }} />} />
                 </View>
-            </View>
+                <Subheader text="Avatar with text"/>
+                <View style={styles.avatarContainer}>
+                    <Avatar text={'EH'} />
+                    <Avatar size={60} backgroundColor="paperOrange" color="#000000" text={'MD'} />
+                    <Avatar size={80} backgroundColor="paperPink" text={'EK'} />
+                    <Avatar size={120} color="paperTeal" text={'FB'} />
+                </View>
+            </ScrollView>
         );
     }
 }
